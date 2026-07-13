@@ -1,0 +1,76 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id          String    @id @default(cuid())
+  email       String    @unique
+  username    String    @unique
+  password    String?
+  avatar      String?
+  bio         String?
+  isStreaming Boolean   @default(false)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  streams     Stream[]
+  followers   Follow[] @relation("userFollowers")
+  following   Follow[] @relation("userFollowing")
+  messages    Message[]
+}
+
+model Stream {
+  id          String   @id @default(cuid())
+  title       String
+  description String?
+  gameId      String?
+  thumbnail   String?
+  isLive      Boolean  @default(false)
+  viewerCount Int      @default(0)
+  streamKey   String   @unique
+  userId      String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  user        User     @relation(fields: [userId], references: [id])
+  messages    Message[]
+}
+
+model Follow {
+  id          String   @id @default(cuid())
+  userId      String
+  followingId String
+  createdAt   DateTime @default(now())
+
+  user        User     @relation("userFollowers", fields: [userId], references: [id])
+  following   User     @relation("userFollowing", fields: [followingId], references: [id])
+
+  @@unique([userId, followingId])
+}
+
+model Message {
+  id        String   @id @default(cuid())
+  content   String
+  userId    String
+  streamId  String
+  createdAt DateTime @default(now())
+
+  user      User     @relation(fields: [userId], references: [id])
+  stream    Stream   @relation(fields: [streamId], references: [id])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+
+  user User @relation(fields: [userId], references: [id])
+
+  @@index([userId])
+}
