@@ -2,7 +2,7 @@
   "compilerOptions": {
     "target": "ES2020",
     "module": "commonjs",
-    "lib": ["ES2020", "ES2020.Symbol", "ES2020.Symbol.asyncIterator", "ES2020.bigint", "ES2020.corejs-stable", "ES2020.data-view", "ES2020.date", "ES2020.intl", "ES2020.json", "ES2020.math", "ES2020.number", "ES2020.promise", "ES2020.regexp", "ES2020.string", "ES2020.intl", "ES2020.temporal", "ES2021.array-like", "ES2021.array_prototype_values", "ES2021.bigint", "ES2021.boolean", "ES2021.data_view", "ES2021.date", "ES2021.function", "ES2021.intl", "ES2021.json", "ES2021.memory", "ES2021.number", "ES2021.object", "ES2021.promise", "ES2021.regexp", "ES2021.string", "ES2021.symbol", "ES2021.transcoding", "ES2021.numeric_separator", "ES2021.ring_buffer", "ES2021.statistical_analysis", "ES2021.string_regular_expressions", "ES2021.temporal", "ES2022.array_find", "ES2022.array_filter_in_place", "ES2022.error", "ES2022.finalization_registry", "ES2022.global_this", "ES2022.intl", "ES2022.json", "ES2022.map", "ES2022.promise", "ES2022.set", "ES2022.slice", "ES2022.string", "ES2022.symbol", "ES2022.temporal", "ES2022.array_to_prototype", "ES2023.array_find", "ES2023.array_group", "ES2023.array_groups_to_map", "ES2023.at", "ES2023.buffer", "ES2023.decimal", "ES2023.decimal_float", "ES2023.destructuring", "ES2023.function", "ES2023.global_this", "ES2023.hashbang", "ES2023.intl", "ES2023.json", "ES2023.lazy", "ES2023.map", "ES2023.memory", "ES2023.meta", "ES2023.number", "ES2023.object", "ES2023.promise", "ES2023.regexp", "ES2023.set", "ES2023.string", "ES2023.symbol", "ES2023.temporal", "ES2023.array", "ES2023.array_iteration", "ES2024.array", "ES2024.array_find_from_last", "ES2024.array-groups", "ES2024.array-filter-in-place", "ES2024.bigint", "ES2024.buffer", "ES2024.collections", "ES2024.data", "ES2024.decorators", "ES2024.decorators-stage0", "ES2024.decorators-stage1", "ES2024.decorators-stage2", "ES2024.error", "ES2024.event", "ES2024.finalization-registry", "ES2024.function", "ES2024.global-this", "ES2024.intl", "ES2024.json", "ES2024.lazy", "ES2024.map", "ES2024.math", "ES2024.memory", "ES2024.meta", "ES2024.number", "ES2024.object", "ES2024.parse-intl", "ES2024.promise", "ES2024.regexp", "ES2024.set", "ES2024.string", "ES2024.symbol", "ES2024.temporal", "ES2024.array", "ES2024.array-iteration", "ES2024.array-prototype-values", "ES2024.array-prototype-filter-in-place", "ES2024.array-prototype-find-from-last", "ES2024.array-prototype-groups", "ES2024.array-prototype-reduced", "ES2024.array-prototype-aggregate", "ES2024.array-prototype-some-with-filter", "ES2024.array-prototype-every-with-filter", "ES2024.array-prototype-find", "ES2024.array-prototype-find-index", "ES2024.array-prototype-flat", "ES2024.array-prototype-flat-map", "ES2024.array-prototype-for-each", "ES2024.array-prototype-includes", "ES2024.array-prototype-index-of", "ES2024.array-prototype-join", "ES2024.array-prototype-keys", "ES2024.array-prototype-entries", "ES2024.array-prototype-values", "ES2024.array-prototype-reduce", "ES2024.array-prototype-reduce-right", "ES2024.array-prototype-reverse", "ES2024.array-prototype-slice", "ES2024.array-prototype-sort", "ES2024.array-prototype-to-string", "ES2024.array-prototype-value-of", "ES2024.array-prototype-at", "ES2024.array-prototype-buffer-byte-length", "ES2024.array-prototype-buffer-byte-offset", "ES2024.array-prototype-buffer-constructors", "ES2024.array-prototype-buffer-prototype", "ES2024.array-prototype-buffer-symbol", "ES2024.array-prototype-buffer-wasm", "ES2024.array-prototype-buffer", "ES2024.array-prototype-buffer-constructors", "ES2024.array-prototype-buffer-prototype", "ES2024.array-prototype-buffer-symbol", "ES2024.array-prototype-buffer-wasm", "ES2024.array-prototype-buffer", "ES2024.array-prototype-buffer-constructors", "ES2024.array-prototype-buffer-prototype", "ES2024.array-prototype-buffer-symbol", "ES2024.array-prototype-buffer-wasm", "ES2024.array-prototype-buffer"],
+    "lib": ["ES2020"],
     "strict": true,
     "noImplicitAny": true,
     "strictNullChecks": true,
@@ -15,9 +15,6 @@
     "noUnusedParameters": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
-    "noUncheckedIndexedAccess": true,
-    "noImplicitOverride": true,
-    "noPropertyAccessFromIndexSignature": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "resolveJsonModule": true,
@@ -28,9 +25,9 @@
     "rootDir": "./src",
     "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"]
-    }
+      "@/*": ["src/*"],
+    },
   },
   "include": ["src/**/*"],
-  "exclude": ["node_modules", "dist"]
+  "exclude": ["node_modules", "dist"],
 }

@@ -6,11 +6,16 @@ import helmet from 'helmet';
 import morgan from 'morgan';
 import dotenv from 'dotenv';
 import { PrismaClient } from '@prisma/client';
+import authRoutes from './routes/auth.routes';
+import streamRoutes from './routes/stream.routes';
 
 dotenv.config();
 
 const app: Application = express();
 const server = http.createServer(app);
+const prisma = new PrismaClient();
+
+// Socket.IO setup
 const io = new Server(server, {
   cors: {
     origin: process.env.FRONTEND_URL || 'http://localhost:3000',
@@ -19,13 +24,13 @@ const io = new Server(server, {
   },
 });
 
-const prisma = new PrismaClient();
-
 // Middleware
-app.use(cors({
-  origin: process.env.FRONTEND_URL || 'http://localhost:3000',
-  credentials: true,
-}));
+app.use(
+  cors({
+    origin: process.env.FRONTEND_URL || 'http://localhost:3000',
+    credentials: true,
+  }),
+);
 app.use(helmet());
 app.use(morgan('dev'));
 app.use(express.json());
@@ -36,8 +41,11 @@ app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', timestamp: new Date().toISOString() });
 });
 
+app.use('/api/auth', authRoutes);
+app.use('/api/streams', streamRoutes);
+
 // Socket.IO connection
-io.on('connection', (socket) => {
+io.on('connection', socket => {
   console.log('User connected:', socket.id);
 
   socket.on('join-stream', (streamId: string) => {
@@ -56,7 +64,13 @@ io.on('connection', (socket) => {
           userId,
         },
         include: {
-          user: true,
+          user: {
+            select: {
+              id: true,
+              username: true,
+              avatar: true,
+            },
+          },
         },
       });
 
