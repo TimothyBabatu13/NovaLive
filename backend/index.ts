@@ -1,26 +1,23 @@
-import { prisma } from "./lib/prisma";
+import express, { type Express, type Request, type Response } from 'express';
+import authRoutes from './src/routes/auth.routes';
+import { errorHandler } from './src/middlewares/error.middleware';
+const app: Express = express();
 
-async function main() {
-  
-  const user = await prisma.user.delete({
-    where: {
-        id: ""
-    }
-  })
-  const allUsers = await prisma.user.findMany({
-    include: {
-      
-    },
-  });
-  console.log("All users:", JSON.stringify(allUsers, null, 2));
-}
+app.get('/', (req: Request, res: Response) => {
+  res.send('Hello Worldkk');
+});
 
-main()
-  .then(async () => {
-    await prisma.$disconnect();
-  })
-  .catch(async (e) => {
-    console.error(e);
-    await prisma.$disconnect();
-    process.exit(1);
-  });
+app.use('/auth', authRoutes);
+app.use(errorHandler);
+app.listen(3000);
+
+
+// main()
+//   .then(async () => {
+//     await prisma.$disconnect();
+//   })
+//   .catch(async (e) => {
+//     console.error(e);
+//     await prisma.$disconnect();
+//     process.exit(1);
+//   });
