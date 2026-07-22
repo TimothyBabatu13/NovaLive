@@ -46,3 +46,7 @@ prisma/dev.db
 # Misc
 *.tsbuildinfo
 *.tgz
+
+/generated/prisma
+
+/generated/prisma
